@@ -1,52 +1,94 @@
-# pythonT
+📌 יצירת טבלה (CREATE TABLE)
+sql
+Copy
+Edit
+CREATE TABLE Customers (
+    customer_id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    age INTEGER
+);
+יוצר טבלה בשם Customers עם עמודות customer_id, first_name, last_name, ו-age.
 
+📌 הוספת נתונים (INSERT INTO)
+sql
+Copy
+Edit
+INSERT INTO Customers (customer_id, first_name, last_name, age) 
+VALUES (1, 'Alice', 'Johnson', 28);
+
+INSERT INTO Customers (customer_id, first_name, last_name, age) 
+VALUES (2, 'Bob', 'Smith', 35);
+
+INSERT INTO Customers (customer_id, first_name, last_name, age) 
+VALUES (3, 'Charlie', 'Brown', 22);
+מכניס שלושה לקוחות עם customer_id, first_name, last_name ו-age לטבלה Customers.
 
 📌 שליפת נתונים (SELECT)
-משמש להצגת מידע מטבלה במסד הנתונים.
+sql
+Copy
+Edit
 SELECT * FROM Customers;
-👉 מציג את כל הנתונים מהטבלה Customers.
-SELECT * FROM Orders WHERE customer_id=4;
-👉 מציג את כל ההזמנות של הלקוח עם customer_id=4 מהטבלה Orders.
-SELECT * FROM Shippings WHERE customer=1 OR customer=2;
-👉 מציג את כל המשלוחים בטבלה Shippings עבור לקוחות עם customer=1 או customer=2.
-📌 הוספת נתונים (INSERT INTO)
-משמש להוספת רשומות חדשות לטבלה.
-INSERT INTO Orders VALUES (10, 'Monitor', 100, 3);
-👉 מוסיף הזמנה חדשה לטבלה Orders עם הפרטים:
+מציג את כל הנתונים מהטבלה Customers.
 
-order_id = 10
-item = Monitor
-amount = 100
-customer_id = 3
-INSERT INTO Shippings VALUES (6, 'Delivered', 3);
-👉 מוסיף רשומה חדשה לטבלה Shippings עם הפרטים:
+sql
+Copy
+Edit
+SELECT * FROM Customers WHERE age > 30;
+מציג את כל הלקוחות שהגיל שלהם גדול מ-30.
 
-shipping_id = 6
-status = Delivered
-customer_id = 3
-📌 מחיקת נתונים (DELETE)
-משמש להסרת נתונים מטבלה.
-DELETE FROM Orders WHERE customer_id=4;
-👉 מוחק את כל ההזמנות בטבלה Orders השייכות ללקוח עם customer_id=4.
-DELETE FROM Customers WHERE age < 30;
-👉 מוחק מהטבלה Customers את כל הלקוחות שגילם קטן מ-30.
-⚠ שימו לב: ללא תנאי WHERE, הפקודה תמחק את כל הנתונים בטבלה!
+sql
+Copy
+Edit
+SELECT first_name, last_name FROM Customers WHERE customer_id = 1;
+מציג רק את השם הפרטי ושם המשפחה של הלקוח עם customer_id = 1.
 
 📌 עדכון נתונים (UPDATE)
-משמש לעדכון רשומות קיימות בטבלה.
-UPDATE Orders SET amount = 100;
-👉 מעדכן את כל ההזמנות בטבלה Orders כך שהסכום (amount) יהיה 100.
-UPDATE Customers SET first_name='Noam' WHERE first_name='Robert';
-👉 משנה את שם הלקוחות בטבלה Customers מ-'Robert' ל-'Noam'.
-🚀 סיכום קצר
+sql
+Copy
+Edit
+UPDATE Customers SET age = 29 WHERE customer_id = 1;
+מעדכן את הגיל של הלקוח עם customer_id = 1 ל-29.
+
+sql
+Copy
+Edit
+UPDATE Customers SET last_name = 'Miller' WHERE first_name = 'Bob';
+משנה את שם המשפחה של כל הלקוחות בשם Bob ל-Miller.
+
+📌 מחיקת נתונים (DELETE)
+sql
+Copy
+Edit
+DELETE FROM Customers WHERE customer_id = 3;
+מוחק את הלקוח עם customer_id = 3 מהטבלה Customers.
+
+sql
+Copy
+Edit
+DELETE FROM Customers WHERE age < 25;
+מוחק את כל הלקוחות שגילם קטן מ-25.
+
+sql
+Copy
+Edit
+DELETE FROM Customers;
+⚠ מוחק את כל הנתונים מהטבלה!
+
+📌 מחיקת טבלה (DROP TABLE)
+sql
+Copy
+Edit
+DROP TABLE Customers;
+מוחק את כל הטבלה Customers לחלוטין ממסד הנתונים.
+
 🔹 SELECT – לשליפת נתונים
 🔹 INSERT – להוספת נתונים
-🔹 DELETE – למחיקת נתונים
 🔹 UPDATE – לעדכון נתונים
+🔹 DELETE – למחיקת נתונים
+🔹 DROP TABLE – למחיקת טבלה
 
-
-
-
+🚀 ככה משתמשים ב-SQL כדי לנהל מסד נתונים בצורה בסיסית!
 
 
 import sqlite3
