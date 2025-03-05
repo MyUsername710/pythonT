@@ -44,4 +44,47 @@ UPDATE Customers SET first_name='Noam' WHERE first_name='Robert';
 🔹 DELETE – למחיקת נתונים
 🔹 UPDATE – לעדכון נתונים
 
-אם את רוצה תרגילים או הסברים נוספים, אני כאן! 😊
+
+
+
+
+
+import sqlite3
+
+# יצירת חיבור למסד הנתונים (או יצירה אם לא קיים)
+conn = sqlite3.connect("example.db")
+cursor = conn.cursor()
+
+# יצירת טבלה
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        age INTEGER NOT NULL
+    )
+""")
+
+# הכנסת נתונים
+cursor.execute("INSERT INTO Users (name, age) VALUES (?, ?)", ("Alice", 25))
+cursor.execute("INSERT INTO Users (name, age) VALUES (?, ?)", ("Bob", 30))
+cursor.execute("INSERT INTO Users (name, age) VALUES (?, ?)", ("Charlie", 22))
+
+# שמירת השינויים
+conn.commit()
+
+# שליפת נתונים
+cursor.execute("SELECT * FROM Users")
+rows = cursor.fetchall()
+
+# הצגת הנתונים
+for row in rows:
+    print(row)
+
+# סגירת החיבור למסד הנתונים
+conn.close()
+מה הקוד עושה?
+יוצר (או פותח אם קיים) מסד נתונים בשם example.db.
+מוודא שקיימת טבלה בשם Users עם עמודות id, name, age.
+מכניס שלושה משתמשים עם שם וגיל.
+שולף את כל הנתונים מהטבלה ומדפיס אותם.
+סוגר את החיבור למסד הנתונים.
